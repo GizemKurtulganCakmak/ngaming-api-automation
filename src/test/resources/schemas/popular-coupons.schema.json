@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["sc", "d", "el", "ml"],
+  "properties": {
+    "sc": {
+      "type": "integer"
+    },
+    "d": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/coupon"
+      }
+    },
+    "el": {},
+    "ml": {}
+  },
+  "definitions": {
+    "coupon": {
+      "type": "object",
+      "required": [
+        "couponId",
+        "events",
+        "eventCount",
+        "orderIndex",
+        "totalOdd"
+      ],
+      "properties": {
+        "couponId": {"type": "string"},
+        "eventCount": {"type": "integer", "minimum": 0},
+        "orderIndex": {"type": "integer"},
+        "totalOdd": {"type": "string"},
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/event"
+          }
+        },
+        "sharing": {
+          "type": ["object", "null"]
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "name",
+        "type",
+        "sportId",
+        "minOdd",
+        "maxOdd",
+        "outcomes"
+      ],
+      "properties": {
+        "name": {"type": "string"},
+        "type": {"type": "string"},
+        "sportId": {"type": "integer"},
+        "minOdd": {"type": "number"},
+        "maxOdd": {"type": "number"},
+        "startDateEpoch": {"type": "integer"},
+        "outcomes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/outcome"
+          }
+        },
+        "broadcast": {
+          "type": ["object", "null"]
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "required": ["id", "name", "odd", "status"],
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "odd": {"type": "string"},
+        "status": {"type": "string"}
+      }
+    }
+  }
+}
